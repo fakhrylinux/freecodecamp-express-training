@@ -9,11 +9,11 @@ console.log('Hello World')
 //   res.send('Hello Express')
 // })
 
+app.use(bodyParser.urlencoded({ extended: false }))
+
 app.use('/', function (req, res, next) {
   console.log(`${req.method} ${req.path} - ${req.ip}`)
   next()
-}, function (req, res) {
-  bodyParser.urlencoded({ extended: false })
 })
 
 app.get('/', function (req, res) {
