@@ -55,4 +55,10 @@ app.get('/name', (req, res) => {
   })
 })
 
+app.post('/name', (req, res) => {
+  res.json({
+    'name': `${req.body.first} ${req.body.last}`,
+  })
+})
+
 module.exports = app
