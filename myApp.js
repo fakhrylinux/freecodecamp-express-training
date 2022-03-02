@@ -11,18 +11,18 @@ console.log('Hello World')
 
 app.use(bodyParser.urlencoded({ extended: false }))
 
-app.use('/', function (req, res, next) {
+app.use('/', (req, res, next) => {
   console.log(`${req.method} ${req.path} - ${req.ip}`)
   next()
 })
 
-app.get('/', function (req, res) {
+app.get('/', (req, res) => {
   res.sendFile(__dirname + '/views/index.html')
 })
 
 app.use('/public', express.static(__dirname + '/public'))
 
-app.get('/json', function (req, res) {
+app.get('/json', (req, res) => {
   if (process.env.MESSAGE_STYLE === 'uppercase') {
     res.json({
       'message': 'HELLO JSON',
@@ -34,16 +34,16 @@ app.get('/json', function (req, res) {
   }
 })
 
-app.get('/now', function (req, res, next) {
+app.get('/now', (req, res, next) => {
   req.time = new Date().toString()
   next()
-}, function (req, res) {
+}, (req, res) => {
   res.json({
     'time': req.time,
   })
 })
 
-app.get('/:word/echo', function (req, res) {
+app.get('/:word/echo', (req, res) => {
   res.json({
     'echo': req.params.word,
   })
